@@ -199,7 +199,6 @@ sess.run(init)
 
 print("n: %s" %n)
 print("initial total weight variance scale: %s" %settings.weightscale)
-print("initial individual weight variance scale: %s" %W_init_stddev)
 #calculate optimal l1 norm
 (W_opt,b_opt) = hand_code_optimal_parity_fn(n,0)
 layerwise_opt_norm_W = [mat_l_1_norm(W_opt[i]) for i in range(len(W_opt))]
