@@ -306,9 +306,7 @@ print("Key_cutoff_factor: %g" %(key_cutoff_factor))
 """
 
 if settings.savefile:
-    np.savez(settings.savefile, reglossvec=reglossvec, fnlossvec=fnlossvec, W=Wcurr, 
-             cutoff_list=cutoff_list, rect_errors=rect_errors, l0_norms=l0_norms, 
-             scaling_factors=scaling_factors,key_cutoff_factor=key_cutoff_factor, params=[settings])
+    np.savez(settings.savefile, W=Wcurr, params=[settings])
 
 
 #deal with this later 
