@@ -57,7 +57,7 @@ optimizer_parameter = settings.optimizer #it sometimes converges at .001
 beta = settings.beta# 0.01 #needs to be dynamically adjusted???
 loss_print_period = int(np.ceil(train_time/100.))
 traintoconv = settings.runtoconv
-inv_temp = 10000000000000#TODO
+inv_temp = 1000#TODO
 batch_size = settings.batch_size
 print("layerwise L1 is on")
 
@@ -217,6 +217,7 @@ print("hidden width multiplier: %s" %settings.hidden_width_multiplier)
 reglossvec = []
 fnlossvec = []
 loss_trigger = False
+min_fn_loss = 0.001*n
 i = 0
 #loop 1
 while (i < train_time) and not loss_trigger:
@@ -236,7 +237,7 @@ while (i < train_time) and not loss_trigger:
     #fnlossvec.append(fn_loss_val)
             
     i += 1
-    if fn_loss_val < 0:#complex_n:
+    if fn_loss_val < min_fn_loss:#complex_n:
         loss_trigger = True
     
 
