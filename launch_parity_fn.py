@@ -18,7 +18,7 @@ os.makedirs("/n/home09/mnye/parity_fn/results/expt%d/logs" % settings.expt)
 
 #depths
 
-weightscales = [0.1,0.2,0.3,0.4,0.5]
+weightscales = [0.1,0.25,0.5,0.75,1,1.25,1.5,1.75,2]
 rseed = 2
 noffsets = 4
 rseed_offsets = np.linspace(0,rseed*(noffsets-1),noffsets).astype(int)
