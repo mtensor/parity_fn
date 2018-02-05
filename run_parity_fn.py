@@ -57,7 +57,7 @@ optimizer_parameter = settings.optimizer #it sometimes converges at .001
 beta = settings.beta# 0.01 #needs to be dynamically adjusted???
 loss_print_period = int(np.ceil(train_time/100.))
 traintoconv = settings.runtoconv
-inv_temp = 1000#TODO
+inv_temp = 10#TODO
 batch_size = settings.batch_size
 print("layerwise L1 is on")
 
@@ -237,7 +237,7 @@ while (i < train_time) and not loss_trigger:
     #fnlossvec.append(fn_loss_val)
             
     i += 1
-    if fn_loss_val < min_fn_loss:#complex_n:
+    if fn_loss_val < 0:#complex_n:
         loss_trigger = True
     
 

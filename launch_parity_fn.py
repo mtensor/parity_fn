@@ -18,16 +18,16 @@ os.makedirs("/n/home09/mnye/parity_fn/results/expt%d/logs" % settings.expt)
 
 #depths
 
-weightscales = [0.1,0.2,0.5]
+weightscales = [0.1,0.2,0.3,0.4,0.5]
 rseed = 2
 noffsets = 4
 rseed_offsets = np.linspace(0,rseed*(noffsets-1),noffsets).astype(int)
 expt = settings.expt
 
-sizes = [16, 32]
-optimizer_params = [0.001, 0.0001]
-L1_betas = [0.001, 0.0001, 0.00001]
-batch_sizes = [500,1000,5000]
+sizes = [32]
+optimizer_params = [0.0001]
+L1_betas = [0.001]
+batch_sizes = [1000]
 hidden_width_multipliers = [1.0]
 
 i = 1
