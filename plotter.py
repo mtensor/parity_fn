@@ -16,7 +16,10 @@ Run averaging code:
 import glob
 import numpy as np
 import argparse
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 
 parser = argparse.ArgumentParser()
 
