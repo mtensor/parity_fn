@@ -47,7 +47,7 @@ for res_num in glob.glob(directory_path + '*.npz'):
         print("there exists a trial which is not complete")
 
         #Whatever man    
-assert len(fun_loss_list) == len(weightscle_list)
+assert len(fun_loss_list) == len(weightscale_list)
 
 fig = plt.figure()
 fig, ax = plt.subplots()
@@ -56,7 +56,7 @@ ax.set(title='Parity function convergence',
        xlabel='Weight initialization noise scale',
        ylabel='Final network error')
 
-fig.savefig(plotpath + "paritysize%.png" % size, dpi=200)
+fig.savefig(plotpath + "paritysize%d.png" % size, dpi=200)
 
 
  
