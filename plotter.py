@@ -39,16 +39,16 @@ print 'directory_path:', directory_path
 fun_loss_list = []
 weightscale_list = []
 for res_num in glob.glob(directory_path + '*.npz'):
-    try:
-        variables = np.load(res_num)
-        run_params = variables['params']    
+    #try:
+    variables = np.load(res_num)
+    run_params = variables['params']    
         
-        if run_params.size == size:
-            fun_loss_list.append(variables['fnloss'])
-            weightscale_list.append(run_params.weightscale)
+    if run_params.size == size:
+        fun_loss_list.append(variables['fnloss'])
+        weightscale_list.append(run_params.weightscale)
 
-    except IOError:
-        print("there exists a trial which is not complete")
+#    except IOError:
+#        print("there exists a trial which is not complete")
 
         #Whatever man    
 assert len(fun_loss_list) == len(weightscale_list)
