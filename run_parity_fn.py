@@ -137,32 +137,35 @@ def eval_network(input_mat,W,b):
     ft = ft[-1]
     return ft
     
-def calc_error(input_mat,W):
+def calc_error(input_mat,output,W):
     #TODO
     #Uses continuous definition of error 
     fn = eval_network(input_mat, W)
     diff = fn - np.sum(input_mat, axis=0, keepdims=True) % 2
     rect_error = sum(sum(np.square(diff)))
     return rect_error
-    
-def key_cutoff_finder(W, max_cutoff):  
-    
-    def cutoff_recurse(W, recurse_depth, max_cutoff, min_cutoff,unrect_error):
-        mid_cutoff = (max_cutoff + min_cutoff)/2.
-        if recurse_depth == 0:     
-            return mid_cutoff
-        elif calc_error(np.identity(W[0].shape[0]), rectify(W,mid_cutoff)) < unrect_error:
-            return cutoff_recurse(W, recurse_depth - 1, max_cutoff , mid_cutoff, unrect_error)
-        elif calc_error(np.identity(W[0].shape[0]), rectify(W,mid_cutoff)) > unrect_error:
-            return cutoff_recurse(W, recurse_depth - 1, mid_cutoff , min_cutoff, unrect_error)
-    
-    recurse_depth = 10
-    min_cutoff = 0
-    unrect_error = calc_error(np.identity(W[0].shape[0]), W)
-    return cutoff_recurse(W, recurse_depth, max_cutoff, min_cutoff,unrect_error)
+
+    #training data
+
+def training_data(n, batch_size):
+    input_train = np.random.randint(2, size=(n,batch_size))
+    output_train = np.sum(input_train, axis=0, keepdims=True) % 2
+    return (input_train, output_train)
 
     
+def key_cutoff_finder(W, max_cutoff):
+    specificity = 1000
+    key_cutoff = 0.
+    key_cutoff_error = calc_error(np.identity(W[0].shape[0]), W)
+    cutoff_list = np.arange(0.,max_cutoff, specificity)
+    for cutoff in cutoff_list:
+        cutoff_error = calc_error(np.identity(W[0].shape[0]), rectify(W, cutoff))
+        if cutoff_error <= key_cutoff_error:
+            key_cutoff = cutoff
+            key_cutoff_error = cutoff_error
+    return key_cutoff
 
+    
 # loss
 l1_regularizer = tf.contrib.layers.l1_regularizer(scale=1.0, scope=None)
 layer_penalty = []
@@ -181,12 +184,7 @@ optimizer = tf.train.AdamOptimizer(optimizer_parameter)
 train = optimizer.minimize(regularized_loss)
 
     
-#training data
 
-def training_data(n, batch_size):
-    input_train = np.random.randint(2, size=(n,batch_size))
-    output_train = np.sum(input_train, axis=0, keepdims=True) % 2
-    return (input_train, output_train)
 #part two stuff
 
 
@@ -258,6 +256,11 @@ print("\t L_0 norm: %g (hand-coded value is %g) "%(l0norm(Wcurr,bcurr), optimal_
 print("\t l1 norm: %g (hand-coded value is %g)"%(l_1_norm(Wcurr,bcurr), l_1_norm(W_opt,b_opt)))
 
 
+#key cutoff finder:
+val_size = 5000
+val_in, val_out = training_data(n,val_size)
+
+
 """
 cutoff_list = [1., 2., 5., 10., 20., 50., 100.] #need to be floats
 rect_errors = []
@@ -306,7 +309,7 @@ print("Key_cutoff_factor: %g" %(key_cutoff_factor))
 """
 
 if settings.savefile:
-    np.savez(settings.savefile, W=Wcurr, params=[settings])
+    np.savez(settings.savefile, W=Wcurr, params=settings, fnloss=fn_loss_val)
 
 
 #deal with this later 
