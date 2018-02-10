@@ -80,7 +80,7 @@ bias = [tf.Variable(bias_init[i]) for i in range(len(bias_init))]
 
 """
 ######Initialize with identity matrix######
-(W,bias) = hand_code_identity_fn(n,WEIGHTSCALE)
+(W,bias) = hand_code_identity_fn(n, settings.weightscale)
 print("initialized with noisy identity matrix")
 """
 
