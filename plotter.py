@@ -34,7 +34,7 @@ size = settings.size
 basepath = "/n/home09/mnye/parity_fn/results/expt%d/" % experiment_num
 directory_path = basepath + 'data/'
 plotpath = basepath + 'plots/'
-print
+print 'directory_path:', directory_path
 
 fun_loss_list = []
 weightscale_list = []
