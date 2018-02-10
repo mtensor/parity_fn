@@ -60,7 +60,7 @@ ax.set(title='Parity function convergence',
        xlabel='Weight initialization noise scale',
        ylabel='Final network error')
 
-fig.savefig(plotpath + "paritysize%d.png" % size, dpi=200)
-
+#fig.savefig(plotpath + "paritysize%d.png" % size, dpi=200)
+fig.savefig('paritysize%d.png' % size, dpi = 200)
 
  
