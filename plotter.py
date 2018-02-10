@@ -34,6 +34,7 @@ size = settings.size
 basepath = "/n/home09/mnye/parity_fn/results/expt%d/" % experiment_num
 directory_path = basepath + 'data/'
 plotpath = basepath + 'plots/'
+print
 
 fun_loss_list = []
 weightscale_list = []
@@ -54,7 +55,7 @@ assert len(fun_loss_list) == len(weightscale_list)
 
 fig = plt.figure()
 fig, ax = plt.subplots()
-plt.plot(y,x)
+plt.plot(weightscale_list,fun_loss_list)
 ax.set(title='Parity function convergence',
        xlabel='Weight initialization noise scale',
        ylabel='Final network error')
