@@ -39,10 +39,11 @@ print 'directory_path:', directory_path
 fun_loss_list = []
 weightscale_list = []
 for res_num in glob.glob(directory_path + '*.npz'):
-    #try:
+    #try: 
     variables = np.load(res_num)
-    run_params = variables['params']    
-        
+    run_params = variables['params'][0]
+    print "run_params[0]", run_params[0]
+    print "size:", run_params.size    
     if run_params.size == size:
         fun_loss_list.append(variables['fnloss'])
         weightscale_list.append(run_params.weightscale)
@@ -55,12 +56,14 @@ assert len(fun_loss_list) == len(weightscale_list)
 
 fig = plt.figure()
 fig, ax = plt.subplots()
+print "weightscale", weightscale_list
+print "fun loss list", fun_loss_list
 plt.plot(weightscale_list,fun_loss_list)
 ax.set(title='Parity function convergence',
        xlabel='Weight initialization noise scale',
        ylabel='Final network error')
 
 #fig.savefig(plotpath + "paritysize%d.png" % size, dpi=200)
-fig.savefig('paritysize%d.png' % size, dpi = 200)
+fig.savefig('parityexpt%dsize%d.png' %(experiment_num, size), dpi = 200)
 
  

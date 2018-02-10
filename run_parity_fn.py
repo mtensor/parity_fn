@@ -309,7 +309,7 @@ print("Key_cutoff_factor: %g" %(key_cutoff_factor))
 """
 
 if settings.savefile:
-    np.savez(settings.savefile, W=Wcurr, params=settings, fnloss=fn_loss_val)
+    np.savez(settings.savefile, W=Wcurr, params=[settings], fnloss=fn_loss_val)
 
 
 #deal with this later 
