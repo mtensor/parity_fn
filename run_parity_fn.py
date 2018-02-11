@@ -231,8 +231,8 @@ while (i < train_time) and not loss_trigger:
               %(i,fn_loss_val,reg_loss_val))
         sys.stdout.flush()
     
-    #reglossvec.append(reg_loss_val)
-    #fnlossvec.append(fn_loss_val)
+    reglossvec.append(reg_loss_val)
+    fnlossvec.append(fn_loss_val)
             
     i += 1
     if fn_loss_val < 0:#complex_n:
@@ -309,10 +309,11 @@ print("Key_cutoff_factor: %g" %(key_cutoff_factor))
 """
 
 if settings.savefile:
-    np.savez(settings.savefile, W=Wcurr, params=[settings], fnloss=fn_loss_val)
+    np.savez(settings.savefile, W=Wcurr, params=[settings], fnloss=fn_loss_val, reglossvec=reglossvec, fnlossvec=fnlossvec)
 
 
 #deal with this later 
+
 
 '''
 unitwise_loss = tf.square(output - ft_output)
