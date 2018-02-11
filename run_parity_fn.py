@@ -7,6 +7,7 @@ import argparse
 import tensorflow as tf
 from hand_code_parity_fn import hand_code_optimal_parity_fn
 from hand_code_parity_fn import hand_code_identity_fn
+from hand_code_parity_sparsity import hand_code_optimal_parity_fn_sparsity_pattern
 
 
 parser = argparse.ArgumentParser()
@@ -29,6 +30,7 @@ parser.add_argument('-savefile', type=argparse.FileType('w'))
 parser.add_argument('-showplot', action='store_true')
 parser.add_argument('-saveplot', action='store_true')
 parser.add_argument('-verbose', action='store_true')
+parser.add_argument('-sparse', action='store_true')
 
 settings = parser.parse_args(); 
                             
@@ -66,8 +68,12 @@ print("layerwise L1 is on")
  #SHOULD BE DIFFERENT FOR EACH LAYER
 
 ######Initialize near optimal solution######
-(W_init,bias_init) = hand_code_optimal_parity_fn(n,settings.weightscale)
-print("starting near optimial solution")
+if settings.sparse:
+    (W_init,bias_init) = hand_code_optimal_parity_fn_sparsity_pattern(n,settings.weightscale)
+    print("starting near optimial solution, maintaining sparsity pattern")
+else:
+    (W_init,bias_init) = hand_code_optimal_parity_fn(n,settings.weightscale)
+    print("starting near optimial solution")
 
 
 W = [tf.Variable(W_init[i]) for i in range(len(W_init))]

@@ -39,7 +39,7 @@ for n in sizes:
                     for ws in weightscales:
                         for roff in rseed_offsets:                   
                             savefile = "/n/home09/mnye/parity_fn/results/expt%d/data/res%d.npz" %(expt, i) 
-                            fo.write("-rseed %d -rseed_offset %d -weightscale %g -size %d -beta %g -optimizer %g -epochs 100000 -savefile %s -batch_size %d -hidden_width_multiplier %g\n" % (rseed, roff, ws, n, beta, optimizer, savefile, bs, hidden_width_multiplier))
+                            fo.write("-sparse -rseed %d -rseed_offset %d -weightscale %g -size %d -beta %g -optimizer %g -epochs 100000 -savefile %s -batch_size %d -hidden_width_multiplier %g\n" % (rseed, roff, ws, n, beta, optimizer, savefile, bs, hidden_width_multiplier))
                             i = i+1
                             #what is lr?
                             #epoch thing may need to be cut
