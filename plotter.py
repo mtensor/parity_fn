@@ -42,8 +42,6 @@ for res_num in glob.glob(directory_path + '*.npz'):
     #try: 
     variables = np.load(res_num)
     run_params = variables['params'][0]
-    print "run_params[0]", run_params[0]
-    print "size:", run_params.size    
     if run_params.size == size:
         fun_loss_list.append(variables['fnloss'])
         weightscale_list.append(run_params.weightscale)
@@ -53,6 +51,11 @@ for res_num in glob.glob(directory_path + '*.npz'):
 
         #Whatever man    
 assert len(fun_loss_list) == len(weightscale_list)
+
+#sort array
+order = np.argsort(weightscale_list)
+weightscale_list = np.array(weightscale_list)[order]
+fun_loss_list = np.array(fun_loss_list)[order]
 
 fig = plt.figure()
 fig, ax = plt.subplots()
