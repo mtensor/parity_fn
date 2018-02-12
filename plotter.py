@@ -63,7 +63,7 @@ fun_loss_list = fun_loss_list / run_params.batch_size
 print "weightscale", weightscale_list
 print "fun loss list", fun_loss_list
 
-plt.plot(weightscale_list,fun_loss_list,linewidth=4.0)
+plt.plot(weightscale_list,fun_loss_list,marker='o',linewidth=4.0)
 ax.set(title='Convergence',
        xlabel='Initialization noise scale',
        ylabel='Final network error')
