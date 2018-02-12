@@ -61,9 +61,10 @@ fig = plt.figure()
 fig, ax = plt.subplots()
 print "weightscale", weightscale_list
 print "fun loss list", fun_loss_list
-plt.plot(weightscale_list,fun_loss_list)
-ax.set(title='Parity function convergence - sparsity pattern enforced',
-       xlabel='Weight initialization noise scale',
+fun_loss_list / run_params.batch_size
+plt.plot(weightscale_list,fun_loss_list,linewidth=4.0)
+ax.set(title='Convergence',
+       xlabel='Initialization noise scale',
        ylabel='Final network error')
 
 #fig.savefig(plotpath + "paritysize%d.png" % size, dpi=200)
