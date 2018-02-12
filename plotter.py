@@ -57,14 +57,27 @@ order = np.argsort(weightscale_list)
 weightscale_list = np.array(weightscale_list)[order]
 fun_loss_list = np.array(fun_loss_list)[order]
 
+SMALL_SIZE = 8
+MEDIUM_SIZE = 12
+BIGGER_SIZE = 16
+
+plt.rc('font', size=MEDIUM_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=BIGGER_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=BIGGER_SIZE)    # fontsize of the x and y labels
+#plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+#plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+#plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
+plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
+
 fig = plt.figure()
 fig, ax = plt.subplots()
 fun_loss_list = fun_loss_list / run_params.batch_size
 print "weightscale", weightscale_list
 print "fun loss list", fun_loss_list
 
-plt.plot(weightscale_list,fun_loss_list,marker='o',linewidth=4.0)
-ax.set(title='Convergence',
+plt.plot(weightscale_list,fun_loss_list, marker='o',markersize=10,linewidth=4.0)
+ax.set(title='Convergence - sparsity pattern enforced',
        xlabel='Initialization noise scale',
        ylabel='Final network error')
 
