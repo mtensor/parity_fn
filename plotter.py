@@ -59,9 +59,10 @@ fun_loss_list = np.array(fun_loss_list)[order]
 
 fig = plt.figure()
 fig, ax = plt.subplots()
+fun_loss_list = fun_loss_list / run_params.batch_size
 print "weightscale", weightscale_list
 print "fun loss list", fun_loss_list
-fun_loss_list / run_params.batch_size
+
 plt.plot(weightscale_list,fun_loss_list,linewidth=4.0)
 ax.set(title='Convergence',
        xlabel='Initialization noise scale',
