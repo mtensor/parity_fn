@@ -62,7 +62,7 @@ fig, ax = plt.subplots()
 print "weightscale", weightscale_list
 print "fun loss list", fun_loss_list
 plt.plot(weightscale_list,fun_loss_list)
-ax.set(title='Parity function convergence',
+ax.set(title='Parity function convergence - sparsity pattern enforced',
        xlabel='Weight initialization noise scale',
        ylabel='Final network error')
 
